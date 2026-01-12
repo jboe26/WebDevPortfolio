@@ -57,8 +57,12 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <p>2026 Joshua Boepple</p>
+    <span id="year"></span> Joshua Boepple
   </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
   <script src="main.js"></script>
 </body>

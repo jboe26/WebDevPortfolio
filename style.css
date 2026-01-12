@@ -471,9 +471,7 @@ textarea:focus {
      FOOTER
   ======================== */
   .footer {
-    font-size: 0.9rem;
-    padding-bottom: 2rem;
-    margin-bottom: -50px;
+    display: none;
   }
 
 }
