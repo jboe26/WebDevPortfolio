@@ -1,8 +1,8 @@
 /* ============================
    NAVIGATION TOGGLE
    ============================ */
-const navToggle = document.getElementById("navToggle");
-const navLinks = document.getElementById("navLinks");
+const toggle = document.getElementById("navToggle");
+const links = document.getElementById("navLinks");
 
 navToggle.addEventListener("click", () => {
   navLinks.classList.toggle("show");

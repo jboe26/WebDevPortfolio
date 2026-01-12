@@ -11,8 +11,6 @@
   --dark-text: #222;
   --muted-text: #555;
   --page-bg: #f7f9fc;
-
-  --section-padding: 120px;
 }
 
 /* =======================================
@@ -48,7 +46,10 @@ body {
 ======================================= */
 .navbar {
   background: var(--navbar-bg);
-  padding: 1rem 0;
+  height: 100px;
+  padding: 0 0;
+  display: flex;
+  align-items: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   position: fixed;
   width: 100%;
@@ -68,7 +69,7 @@ body {
 .nav-brand {
   font-size: 1.6rem;
   font-weight: bold;
-  color: var(--primary2);
+  color: var(--dark-text);
   text-decoration: none;
 }
 
@@ -80,13 +81,13 @@ body {
 
 .nav-links a {
   text-decoration: none;
-  color: var(--primary2);
+  color: var(--dark-text);
   transition: 0.3s ease;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-  color: var(--light-bg);
+  color: var(--primary2);
 }
 
 .nav-toggle {
@@ -95,14 +96,23 @@ body {
   border: none;
   font-size: 2rem;
   cursor: pointer;
-  color: var(--primary2);
+}
+
+/* =======================================
+   UNIVERSAL PAGE SPACING (FIX)
+======================================= */
+.page-section {
+  padding: 100px 1rem 3rem;
+  /* FIX: accounts for navbar height */
+  min-height: calc(100vh - 70px);
 }
 
 /* =======================================
    HERO SECTION
 ======================================= */
 .hero {
-  padding-top: var(--section-padding);
+  padding-top: 100px;
+  /* FIX */
   min-height: calc(100vh - 70px);
   display: flex;
   justify-content: center;
@@ -129,7 +139,7 @@ body {
 }
 
 .text-secondary {
-  color: var(--primary2);
+  color: var(--secondary);
 }
 
 .icons a {
@@ -139,14 +149,15 @@ body {
 }
 
 .icons a:hover {
-  color: var(--primary2);
+  color: var(--secondary);
 }
 
 /* =======================================
    PROJECTS PAGE
 ======================================= */
 .projects-section {
-  padding: var(--section-padding) 1rem 3rem;
+  padding: 100px 1rem 3rem;
+  /* FIX */
   min-height: calc(100vh - 70px);
 }
 
@@ -161,11 +172,12 @@ body {
   margin-bottom: 2rem;
 }
 
+/* Tabs */
 .project-tabs {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
 }
 
 .tab-btn {
@@ -197,6 +209,7 @@ body {
   display: grid;
 }
 
+/* Project grids */
 .project-subheading {
   grid-column: 1 / -1;
   text-align: left;
@@ -211,6 +224,7 @@ body {
   gap: 2rem;
 }
 
+/* Project cards */
 .project-card {
   background: #fff;
   padding: 1.5rem;
@@ -262,11 +276,25 @@ body {
   background: #226b43;
 }
 
+/* Fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* =======================================
    ABOUT PAGE
 ======================================= */
 .about-section {
-  padding: var(--section-padding) 1rem 3rem;
+  padding: 100px 1rem 3rem;
+  /* FIX */
   min-height: calc(100vh - 70px);
   display: flex;
   justify-content: center;
@@ -290,7 +318,8 @@ body {
    CONTACT PAGE
 ======================================= */
 .contact-section {
-  padding: var(--section-padding) 1rem 3rem;
+  padding: 100px 1rem 3rem;
+  /* FIX */
   min-height: calc(100vh - 70px);
   display: flex;
   justify-content: center;
@@ -320,14 +349,17 @@ body {
 
 input,
 select,
-textarea {
+textarea,
+option {
   width: 100%;
   padding: 0.8rem;
   border: 1px solid #ccc;
   border-radius: 6px;
   background: #fff;
   transition: 0.3s ease;
+  font-size: medium;
 }
+
 
 input:focus,
 select:focus,
@@ -363,133 +395,85 @@ textarea:focus {
   box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* =======================================
-   MOBILE STYLES
-======================================= */
 @media (max-width: 768px) {
 
-  /* NAV */
-  .nav-toggle {
-    display: block;
-    font-size: 1.8rem;
-  }
-
-  .nav-brand {
-    font-size: 1.2rem;
-  }
-
+  /* ========================
+     NAVIGATION
+  ======================== */
   .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: center;
     position: absolute;
     top: 70px;
     right: 0;
     width: 100%;
     background: var(--navbar-bg);
-    flex-direction: column;
-    align-items: center;
     padding: 1rem 0;
-    display: none;
+    text-align: center;
   }
 
   .nav-links.show {
     display: flex;
   }
 
-  .nav-links a {
-    padding: 0.8rem 0;
-    font-size: 1.1rem;
+  .nav-toggle {
+    display: block;
   }
 
-  /* HERO */
-  .hero {
-    padding-top: 100px;
-    padding-bottom: 3rem;
-  }
-
-  .lg-heading {
-    font-size: 2.2rem;
-  }
-
-  .sm-heading {
-    font-size: 1.1rem;
-  }
-
-  /* PROJECTS */
-  .project-tabs {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .tab-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-  }
-
-  .projects-grid {
-    gap: 1.2rem;
-  }
-
-  .project-card {
-    padding: 1rem;
-  }
-
-  /* ABOUT */
-  .profile-image {
-    width: 180px;
-    height: 180px;
-  }
-
-  /* CONTACT */
-  .contact-section {
-    padding: 100px 1rem 2rem;
-  }
-
-  .contact-container {
-    padding: 0 1rem;
-  }
-
-  .contact-form {
-    gap: 1rem;
-  }
-
+  /* ========================
+     CONTACT FORM
+  ======================== */
   .form-row {
     flex-direction: column;
   }
 
-  .form-group label {
-    font-size: 0.95rem;
-  }
-
-  input,
-  select,
-  textarea {
-    padding: 0.7rem;
-    font-size: 1rem;
-  }
-
-  .btn-submit {
-    padding: 0.7rem 1.2rem;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 400px) {
-  .lg-heading {
-    font-size: 1.8rem;
-  }
-
-  .sm-heading {
-    font-size: 1rem;
-  }
-
   .contact-section {
-    padding-top: 80px;
+    padding: 100px 1rem 7rem;
+    /* FIXED: more bottom space */
   }
 
-  .btn-submit {
-    width: 100%;
+  .contact-container {
+    padding-bottom: 2rem;
   }
 
-  .form-group label {
+  textarea {
+    min-height: 140px;
+    resize: vertical;
+    padding: 0.8rem;
+    line-height: 1.4;
+  }
+
+  select,
+  option {
+    font-size: medium;
+  }
+
+  /* ========================
+     PROJECTS PAGE
+  ======================== */
+  .projects-grid {
+    gap: 1.5rem;
+  }
+
+  .projects-container h1 {
+    font-size: 2rem;
+  }
+
+  /* ========================
+     TYPOGRAPHY
+  ======================== */
+  .lg-heading {
+    font-size: 2.3rem;
+  }
+
+  /* ========================
+     FOOTER
+  ======================== */
+  .footer {
     font-size: 0.9rem;
+    padding-bottom: 2rem;
+    margin-bottom: -50px;
   }
+
 }
